@@ -24,8 +24,8 @@ def welcome():
     print('Every digit you guess correctly in the wrong place is a “bull.”')
     print('Try to get the lowest guess count you can!\n')
 
-def check_error():
-    print('FIXME: check_error()')
+def error(attempt):
+    # FIXME: error()
     return -1
     
 def check_attempt(attempt, answer):
@@ -34,7 +34,6 @@ def check_attempt(attempt, answer):
     cows = 0
     bulls = 0
     if attempt != answer:
-        check_error()
         for num in range(len(answer[:])):
             if attempt[num] == answer[num]: # Find cows
                 attempt_copy.pop(num - cows)
@@ -46,9 +45,11 @@ def check_attempt(attempt, answer):
             if attempt[num] in answer:
                 bulls += 1
         print('Cows: {} Bulls: {}'.format(cows, bulls))
-        attempt = input("Guess a number: or enter '0' to quit:\n")
+        attempt = input("Guess a four-digit number or enter '0' to quit:\n")
     else:
+        print('Answer was:', ''.join(answer))
         print('You win!')
+        
         attempt = '0'
     
     return attempt
@@ -57,7 +58,7 @@ def main():
     clear()
     generated_number_list = [str(random.randint(0, 9)) for i in range(4)] # creates 4 digit list
     welcome()
-    user_attempt = input("Guess a number: or enter '0' to quit:\n")
+    user_attempt = input("Guess a four-digit number: or enter '0' to quit:\n")
     guess_count = 0
     while user_attempt != '0':
         clear()
