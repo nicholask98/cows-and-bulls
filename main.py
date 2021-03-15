@@ -20,8 +20,8 @@ import random
 def welcome():
     print('Cows and Bulls!')
     print('I have a secret 4 digit number.')
-    print('Every digit you guess correctly in the correct place is a “cow”.')
-    print('Every digit you guess correctly in the wrong place is a “bull.”')
+    print('Every digit you guess correctly in the correct place is a “Bull”.')
+    print('Every digit you guess correctly in the wrong place is a “Cow”.')
     print('Try to get the lowest guess count you can!\n')
 
 def error(attempt):
@@ -31,20 +31,20 @@ def error(attempt):
 def check_attempt(attempt, answer):
     attempt_copy = attempt[:]
     answer_copy = answer[:]
-    cows = 0
     bulls = 0
+    cows = 0
     if attempt != answer:
         for num in range(len(answer[:])):
-            if attempt[num] == answer[num]: # Find cows
-                attempt_copy.pop(num - cows)
-                answer_copy.pop(num - cows)
-                cows += 1
+            if attempt[num] == answer[num]: # Find bulls
+                attempt_copy.pop(num - bulls)
+                answer_copy.pop(num - bulls)
+                bulls += 1
         answer = answer_copy
         attempt = attempt_copy
-        for num in range(len(answer)): # Find Bulls
+        for num in range(len(answer)): # Find Cows
             if attempt[num] in answer:
-                bulls += 1
-        print('Cows: {} Bulls: {}'.format(cows, bulls))
+                cows += 1
+        print('Bulls: {} Cows: {}'.format(bulls, cows))
         attempt = input("Guess a four-digit number or enter '0' to quit:\n")
     else:
         print('Answer was:', ''.join(answer))
